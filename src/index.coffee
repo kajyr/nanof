@@ -8,7 +8,7 @@ activate = (controller_name, controller) ->
 		local$ = (selector) -> $(selector, elem)
 		controller(local$, elem)
 
-window.$k = {
+module.exports = {
 	activate: activate
 	on: (list, event, fn) ->
 		elem.addEventListener(event, fn, false) for elem in Array.prototype.concat(list)	

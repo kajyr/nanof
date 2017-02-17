@@ -27,7 +27,7 @@
     return results;
   };
 
-  window.$k = {
+  module.exports = {
     activate: activate,
     on: function(list, event, fn) {
       var elem, i, len, ref;
