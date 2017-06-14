@@ -1,43 +1,20 @@
-(function() {
-  var $, activate;
-
-  $ = function(selector, scope) {
-    if (scope == null) {
-      scope = document;
-    }
-    return Array.prototype.slice.call(scope.querySelectorAll(selector));
-  };
+const $ = (selector, scope = document.body) => Array.prototype.slice.call(scope.querySelectorAll(selector));
 
 
-  /*
-  	Esegue tutti i controller trovati in pagina
-   */
+/*
+  Esegue tutti i controller trovati in pagina
+*/
+const activate = (controller_name, controller) =>
+	$(`[controller="${controller_name}"]`).forEach(elem => controller(selector => $(selector, elem), elem));
 
-  activate = function(controller_name, controller) {
-    var elem, i, len, local$, ref, results;
-    ref = $('[controller="' + controller_name + '"]');
-    results = [];
-    for (i = 0, len = ref.length; i < len; i++) {
-      elem = ref[i];
-      local$ = function(selector) {
-        return $(selector, elem);
-      };
-      results.push(controller(local$, elem));
-    }
-    return results;
-  };
+const on = (list, event, fn) => {
+	for (let i = 0; i < list.length; i++) {
+		list[i].addEventListener(event, fn, false);
+	}
+	return list;
+}
 
-  module.exports = {
-    activate: activate,
-    on: function(list, event, fn) {
-      var elem, i, len, ref;
-      ref = Array.prototype.concat(list);
-      for (i = 0, len = ref.length; i < len; i++) {
-        elem = ref[i];
-        elem.addEventListener(event, fn, false);
-      }
-      return list;
-    }
-  };
-
-}).call(this);
+module.exports = {
+  activate,
+  on
+};
