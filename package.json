@@ -1,6 +1,6 @@
 {
   "name": "nanof",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/kajyr/nanof",
   "author": "Carlo 'kajyr' <carlo.panzi@gmail.com> (http://kajyr.github.io/)",
