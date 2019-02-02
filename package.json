@@ -1,6 +1,6 @@
 {
   "name": "nanof",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "main": "index.js",
   "repository": "https://github.com/kajyr/nanof",
   "author": "Carlo 'kajyr' <carlo.panzi@gmail.com> (http://kajyr.github.io/)",
@@ -24,7 +24,9 @@
     "generate-changelog": "^1.7.1"
   },
   "ava": {
-    "require": ["./tests/helpers/env.js"],
+    "require": [
+      "./tests/helpers/env.js"
+    ],
     "files": [
       "./tests/**.js"
     ]
