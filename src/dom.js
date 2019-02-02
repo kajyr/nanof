@@ -23,6 +23,17 @@ function list(elems) {
   return Array.prototype.slice.call(elems);
 }
 
+const classes = className => className.trim().split(" ");
+
+function mapElementsClasses(elements, className, fn) {
+  const listOfClasses = classes(className);
+
+  list(elements).forEach(element => {
+    listOfClasses.forEach(c => fn(element, c));
+  });
+  return elements;
+}
+
 /**
  * Adds one or more class to one or more elements.
  * @param {DOMNode|NodeList|Array} elements
@@ -30,16 +41,20 @@ function list(elems) {
  * @returns {*}
  */
 function addClass(elements, className) {
-  const listOfClasses = className.trim().split(" ");
+  return mapElementsClasses(elements, className, (elem, c) =>
+    elem.classList.add(c)
+  );
+}
 
-  list(elements).forEach(element => {
-    listOfClasses.forEach(c => element.classList.add(c));
-  });
-  return elements;
+function removeClass(elements, className) {
+  return mapElementsClasses(elements, className, (elem, c) =>
+    elem.classList.remove(c)
+  );
 }
 
 module.exports = {
   $,
   list,
-  addClass
+  addClass,
+  removeClass
 };

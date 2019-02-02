@@ -1,9 +1,9 @@
 import test from "ava";
-const { $, addClass, list } = require("../src/dom");
+const { $, addClass, removeClass, list } = require("../src/dom");
 
 test.beforeEach(t => {
   document.body.innerHTML = `<div>
-    <div id="first">
+    <div id="first" class="foo">
       <p>Hello world</p>
     </div>
     <p>Other Text</p>
@@ -22,16 +22,6 @@ test("Selector - empty", function(t) {
   t.is($().length, 0);
 });
 
-test("addClass", function(t) {
-  addClass($("#first"), "prova provina");
-  addClass(document.querySelectorAll("#first"), "bar");
-
-  const elem = $("#first")[0];
-  t.true(elem.classList.contains("prova"));
-  t.true(elem.classList.contains("provina"));
-  t.true(elem.classList.contains("bar"));
-});
-
 test("list", function(t) {
   const divs = list(document.querySelectorAll("div"));
   const elem = list(document.getElementById("first"));
@@ -40,4 +30,21 @@ test("list", function(t) {
   t.true(Array.isArray(divs));
   t.true(Array.isArray(elem));
   t.true(Array.isArray(str));
+});
+
+test("addClass", function(t) {
+  addClass($("#first"), "foo provina");
+  addClass(document.querySelectorAll("#first"), "bar");
+
+  const elem = document.getElementById("first");
+  t.true(elem.classList.contains("foo"));
+  t.true(elem.classList.contains("provina"));
+});
+
+test("removeClass", function(t) {
+  removeClass($("#first"), "foo provina");
+
+  const elem = document.getElementById("first");
+  t.false(elem.classList.contains("foo"));
+  t.false(elem.classList.contains("provina"));
 });
