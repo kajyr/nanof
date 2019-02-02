@@ -1,20 +1,22 @@
-const $ = (selector, scope = document.body) => Array.prototype.slice.call(scope.querySelectorAll(selector));
-
+const { $, list, addClass } = require("./src/dom");
 
 /*
   Esegue tutti i controller trovati in pagina
 */
 const activate = (controller_name, controller) =>
-	$(`[controller="${controller_name}"]`).forEach(elem => controller(selector => $(selector, elem), elem));
+  $(`[controller="${controller_name}"]`).forEach(elem =>
+    controller(selector => $(selector, elem), elem)
+  );
 
-const on = (list, event, fn) => {
-	for (let i = 0; i < list.length; i++) {
-		list[i].addEventListener(event, fn, false);
-	}
-	return list;
-}
+const on = (nodes, event, fn) => {
+  list(nodes).forEach(elem => elem.addEventListener(event, fn, false));
+  return list;
+};
 
 module.exports = {
   activate,
-  on
+  on,
+  $,
+  list,
+  addClass
 };
