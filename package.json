@@ -6,7 +6,14 @@
   "author": "Carlo 'kajyr' <carlo.panzi@gmail.com> (http://kajyr.github.io/)",
   "license": "MIT",
   "scripts": {
-    "test": "node ./tests/*.js | tnyan"
+    "test": "node ./tests/*.js | tnyan",
+    "changelog": "changelog",
+    "version:major": "yarn version --major",
+    "version:minor": "yarn version --minor",
+    "version:patch": "yarn version --patch",
+    "release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && yarn version:major && git push origin && git push origin --tags",
+    "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && yarn version:minor && git push origin && git push origin --tags",
+    "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && yarn version:patch && git push origin && git push origin --tags"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
@@ -16,6 +23,7 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
+    "generate-changelog": "^1.7.1",
     "release-it": "^2.8.2"
   }
 }
