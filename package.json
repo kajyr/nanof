@@ -6,7 +6,7 @@
   "author": "Carlo 'kajyr' <carlo.panzi@gmail.com> (http://kajyr.github.io/)",
   "license": "MIT",
   "scripts": {
-    "test": "node ./tests/*.js | tnyan",
+    "test": "nyc ava --verbose",
     "changelog": "changelog",
     "version:major": "yarn version --major",
     "version:minor": "yarn version --minor",
@@ -16,11 +16,20 @@
     "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && yarn version:patch && git push origin && git push origin --tags"
   },
   "devDependencies": {
-    "jsdom": "^13.2.0",
-    "tap-nyan": "^1.1.0",
-    "tape": "^4.6.3"
+    "ava": "^1.2.0",
+    "browser-env": "^3.2.5",
+    "nyc": "^13.1.0"
   },
   "dependencies": {
     "generate-changelog": "^1.7.1"
+  },
+  "ava": {
+    "require": ["./tests/helpers/env.js"],
+    "files": [
+      "./tests/**.js"
+    ]
+  },
+  "nyc": {
+    "exclude": "**/tests/**"
   }
 }
