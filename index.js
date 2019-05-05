@@ -1,4 +1,7 @@
-const { $, list, addClass } = require("./src/dom");
+const dom = require("./src/dom");
+const array = require("./src/array");
+
+const { $, list } = dom;
 
 /*
   Esegue tutti i controller trovati in pagina
@@ -16,7 +19,6 @@ const on = (nodes, event, fn) => {
 module.exports = {
   activate,
   on,
-  $,
-  list,
-  addClass
+  ...dom,
+  ...array
 };
