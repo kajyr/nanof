@@ -12,8 +12,10 @@ const activate = (controller_name, controller) =>
   );
 
 const on = (nodes, event, fn) => {
-  list(nodes).forEach(elem => elem.addEventListener(event, fn, false));
-  return list;
+  return list(nodes).map(elem => {
+    elem.addEventListener(event, fn, false);
+    return elem;
+  });
 };
 
 module.exports = {
