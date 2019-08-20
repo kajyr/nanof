@@ -19,12 +19,12 @@
     "postversion": "git push origin && git push origin --tags"
   },
   "devDependencies": {
-    "ava": "^1.4.1",
+    "ava": "^2.3.0",
     "browser-env": "^3.2.6",
-    "nyc": "^14.1.0"
+    "nyc": "^14.1.1"
   },
   "dependencies": {
-    "generate-changelog": "^1.7.1"
+    "generate-changelog": "^1.8.0"
   },
   "ava": {
     "require": [
